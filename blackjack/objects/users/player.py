@@ -1,5 +1,7 @@
+from blackjack.objects.users.base import BaseUser
 
-class Player(object):
+
+class Player(BaseUser):
     age = None
     amt_buyin = None
     amt_cashout = None
@@ -16,15 +18,3 @@ class Player(object):
 
     def cash_out(self):
         self.amt_cashout = self.bankroll
-
-    def win(self, amt):
-        if not isinstance(amt, float) and not isinstance(amt, int):
-            raise AttributeError("Won amount has to be in the form of a number!")
-
-        self.bankroll += amt
-
-    def lose(self, amt):
-        if not isinstance(amt, float) and not isinstance(amt, int):
-            raise AttributeError("Lost amount has to be in the form of a number!")
-
-        self.bankroll -= amt
