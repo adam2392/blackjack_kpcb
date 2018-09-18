@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6230f7bd-d42b-4003-b68d-f60a74702c75" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/blackjack/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blackjack/objects/users/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/blackjack_kpcb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blackjack_kpcb.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blackjack/teacher/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blackjack/teacher/master_counter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blackjack/utility/strategy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blackjack/config/params.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/config/params.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blackjack/objects/game/blackjack.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/game/blackjack.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blackjack/objects/game/deck.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/game/deck.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blackjack/objects/game/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/game/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blackjack/objects/users/house.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/users/house.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blackjack/objects/users/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/users/player.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,22 +27,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="6" />
+          <entry key="py" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="6" />
+          <entry key="Python" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1394" />
+          <entry key="py" value="5454" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1394" />
+          <entry key="Python" value="5454" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -85,34 +81,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blackjack/objects/game/game.py">
+        <entry file="file://$PROJECT_DIR$/blackjack/config/params.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="11" />
-              <folding>
-                <marker date="1537238992133" expanded="true" signature="75:80" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/blackjack/objects/game/blackjack.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blackjack/objects/users/house.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="210">
+              <caret line="14" column="51" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -120,12 +92,82 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blackjack/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+            <state relative-caret-position="542">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
               <folding>
-                <element signature="e#0#49#0" expanded="true" />
-                <marker date="1537238992117" expanded="true" signature="209:729" ph="..." />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blackjack/teacher/base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+                <marker date="1537246146007" expanded="true" signature="136:137" ph="..." />
+                <marker date="1537246146007" expanded="true" signature="321:377" ph="..." />
+                <marker date="1537246146007" expanded="true" signature="848:853" ph="..." />
+                <marker date="1537246146007" expanded="true" signature="848:1351" ph="..." />
+                <marker date="1537246146007" expanded="true" signature="893:1232" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/blackjack/utility/strategy.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="466">
+              <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+                <marker date="1537246146023" expanded="true" signature="264:269" ph="..." />
+                <marker date="1537246146023" expanded="true" signature="288:434" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blackjack/teacher/master_counter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" selection-start-line="1" selection-end-line="2" />
+              <folding>
+                <marker date="1537245030058" expanded="true" signature="141:142" ph="..." />
+                <marker date="1537245030058" expanded="true" signature="141:147" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blackjack/objects/game/game.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blackjack/objects/game/blackjack.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blackjack/objects/game/deck.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1020">
+              <caret line="102" selection-start-line="102" selection-end-line="102" />
             </state>
           </provider>
         </entry>
@@ -151,18 +193,21 @@
         <option value="$PROJECT_DIR$/blackjack/objects/users/base.py" />
         <option value="$PROJECT_DIR$/blackjack/objects/users/player.py" />
         <option value="$PROJECT_DIR$/blackjack/objects/users/house.py" />
-        <option value="$PROJECT_DIR$/blackjack/config/params.py" />
-        <option value="$PROJECT_DIR$/blackjack/app.py" />
         <option value="$PROJECT_DIR$/blackjack/objects/game/game.py" />
         <option value="$PROJECT_DIR$/blackjack/objects/game/blackjack.py" />
+        <option value="$PROJECT_DIR$/blackjack/app.py" />
+        <option value="$PROJECT_DIR$/blackjack/config/params.py" />
+        <option value="$PROJECT_DIR$/blackjack/teacher/master_counter.py" />
+        <option value="$PROJECT_DIR$/blackjack/teacher/base.py" />
+        <option value="$PROJECT_DIR$/blackjack/utility/strategy.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1873" />
-    <option name="y" value="776" />
-    <option name="width" value="1060" />
-    <option name="height" value="876" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="163" />
+    <option name="y" value="22" />
+    <option name="width" value="1432" />
+    <option name="height" value="925" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -189,19 +234,6 @@
               <item name="blackjack_kpcb" type="462c0819:PsiDirectoryNode" />
               <item name="blackjack" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blackjack_kpcb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blackjack_kpcb" type="462c0819:PsiDirectoryNode" />
-              <item name="blackjack" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blackjack_kpcb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blackjack_kpcb" type="462c0819:PsiDirectoryNode" />
-              <item name="blackjack" type="462c0819:PsiDirectoryNode" />
-              <item name="objects" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -233,6 +265,60 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="Python.strategy">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="blackjack_kpcb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/blackjack" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/blackjack/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="strategy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="blackjack_kpcb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/blackjack/utility" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/blackjack/utility/strategy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.app" />
+      <item itemvalue="Python.strategy" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.strategy" />
+        <item itemvalue="Python.app" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -247,15 +333,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1147" y="745" width="1853" height="1175" extended-state="6" />
+    <frame x="163" y="22" width="1432" height="925" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16546762" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28345323" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32962963" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -285,68 +371,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/config/params.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/objects/game/deck.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1537238254741" expanded="true" signature="1056:1058" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blackjack/objects/users/player.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="1" />
-          <folding>
-            <marker date="1537238865713" expanded="true" signature="440:445" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blackjack/objects/users/house.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-            <marker date="1537238992117" expanded="true" signature="209:729" ph="..." />
-          </folding>
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blackjack/objects/game/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="11" />
-          <folding>
-            <marker date="1537238992133" expanded="true" signature="75:80" ph="..." />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blackjack/objects/game/blackjack.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        <state relative-caret-position="300">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/objects/game/deck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/teacher/master_counter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="2" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <marker date="1537245030058" expanded="true" signature="141:142" ph="..." />
+            <marker date="1537245030058" expanded="true" signature="141:147" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/config/params.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="51" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/teacher/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <marker date="1537246146007" expanded="true" signature="136:137" ph="..." />
+            <marker date="1537246146007" expanded="true" signature="321:377" ph="..." />
+            <marker date="1537246146007" expanded="true" signature="848:853" ph="..." />
+            <marker date="1537246146007" expanded="true" signature="848:1351" ph="..." />
+            <marker date="1537246146007" expanded="true" signature="893:1232" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/utility/strategy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1537246146023" expanded="true" signature="264:269" ph="..." />
+            <marker date="1537246146023" expanded="true" signature="288:434" ph="..." />
           </folding>
         </state>
       </provider>
