@@ -12,4 +12,6 @@ class Test_House():
 
 class Test_Player():
     def test_player(self):
-        player = Player()
+        player = Player("johndoe", "18", "500")
+
+        assert isinstance(player.player_identifier, str)

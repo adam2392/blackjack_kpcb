@@ -1,4 +1,4 @@
-from blackjack.objects.game.deck import Hand
+from blackjack.objects.game.hand import Hand
 
 
 class BaseUser(object):

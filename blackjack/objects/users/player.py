@@ -9,13 +9,13 @@ class Player(BaseUser):
 
     def __init__(self, name, age, amt_buyin):
         self.name = name
-        self.age = age
+        self.age = float(age)
         self.amt_buyin = amt_buyin
         self.bankroll = amt_buyin
         self.amt_bet = 0
         self.hands = []
 
-        if age < 18:
+        if self.age < 18:
             raise ValueError("You can not play blackjack and gamble if you are less than 18 y/o!")
 
     def __str__(self):
