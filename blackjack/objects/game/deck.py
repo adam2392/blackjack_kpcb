@@ -3,6 +3,10 @@ import random
 from blackjack.config import params
 
 
+def cmp(a, b):
+    return (a > b) - (a < b)
+
+
 class Card(object):
     """
     Class to represent a standard playing card.
@@ -22,8 +26,12 @@ class Card(object):
 
     def __str__(self):
         """Returns a human-readable string representation."""
-        return '%s of %s' % (Card.rank_names[self.rank],
-                             Card.suit_names[self.suit])
+        return '%s of %s' % (Card.rank_names[self.get_rank()],
+                             Card.suit_names[self.get_suit()])
+
+    def __repr__(self):
+        return '%s of %s' % (Card.rank_names[self.get_rank()],
+                             Card.suit_names[self.get_suit()])
 
     def __cmp__(self, other):
         """Compares this card to other, first by suit, then rank.
@@ -31,9 +39,28 @@ class Card(object):
         Returns a positive number if this > other; negative if other > this;
         and 0 if they are equivalent.
         """
-        t1 = self.suit, self.rank
-        t2 = other.suit, other.rank
+        t1 = self.get_suit(), self.get_rank()
+        t2 = other.get_suit(), other.get_rank()
         return cmp(t1, t2)
+
+    def __lt__(self, other):
+        t1 = self.get_suit(), self.get_rank()
+        t2 = other.get_suit(), other.get_rank()
+        return cmp(t1, t2)
+
+    def __eq__(self, other):
+        t1 = self.get_suit(), self.get_rank()
+        t2 = other.get_suit(), other.get_rank()
+        if t1[0] == t2[0] and t1[1] == t2[1]:
+            return True
+        else:
+            return False
+
+    def get_rank(self):
+        return self.rank
+
+    def get_suit(self):
+        return self.suit
 
 
 class Deck(object):
@@ -48,12 +75,14 @@ class Deck(object):
     """
     numcards = params.NUMCARDS_IN_DECK
 
-    def __init__(self):
+    def __init__(self, numdecks=1):
         self.cards = []
-        for suit in range(4):
-            for rank in range(1, 14):
-                card = Card(suit, rank)
-                self.cards.append(card)
+        self.numdecks = numdecks
+        for i in range(numdecks):
+            for suit in range(4):
+                for rank in range(1, 14):
+                    card = Card(suit, rank)
+                    self.cards.append(card)
 
     def __str__(self):
         res = []
@@ -61,42 +90,18 @@ class Deck(object):
             res.append(str(card))
         return '\n'.join(res)
 
-    def add_card(self, card):
-        """Adds a card to the deck."""
-        self.cards.append(card)
+    def __repr__(self):
+        res = []
+        for card in self.cards:
+            res.append(str(card))
+        return '\n'.join(res)
 
-    def remove_card(self, card):
-        """Removes a card from the deck."""
-        self.cards.remove(card)
-
-    def pop_card(self, i=-1):
-        """Removes and returns a card from the deck.
-
-        i: index of the card to pop; by default, pops the last card.
-        """
-        return self.cards.pop(i)
+    def __len__(self):
+        return len(self.cards)
 
     def shuffle(self):
         """Shuffles the cards in this deck."""
         random.shuffle(self.cards)
 
-    def move_card(self, hand, num):
-        """Moves the given number of cards from the deck into the Hand.
-
-        hand: destination Hand object
-        num: integer number of cards to move
-        """
-        for i in range(num):
-            hand.add_card(self.pop_card())
-
-
-class Hand(Deck):
-    """
-    Class to represent a hand of playing cards. It inherits
-    functionality from a deck.
-
-    """
-
-    def __init__(self, label=''):
-        self.cards = []
-        self.label = label
+    def deal_card(self):
+        return self.cards.pop()

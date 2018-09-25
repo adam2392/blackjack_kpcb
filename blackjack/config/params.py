@@ -7,6 +7,8 @@ INSURANCE = True
 DEALER_HITS_SEVENTEEN = True
 MAX_SPLIT = 4
 
+BLACKJACK = 21
+
 NUMDECKS = 1
 
 # action space of the game per player
