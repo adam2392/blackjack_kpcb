@@ -42,11 +42,20 @@ class Hand(Deck):
         :return: total_val (int)
         """
         total_val = 0
+        numaces = 0
         for card in self.cards:
             if card.get_rank() == 1:
-                total_val += 11
+                numaces += 1
             elif card.get_rank() >= 10:
                 total_val += 10
             else:
                 total_val += card.get_rank()
+        for i in range(numaces):
+            if total_val + 11 < 21:
+                total_val += 21
+            else:
+                total_val += 1
         return total_val
+
+    def get_cards(self):
+        return self.cards

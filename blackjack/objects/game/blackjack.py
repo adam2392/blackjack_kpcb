@@ -1,16 +1,18 @@
 from blackjack.config import params
-
-from blackjack.objects.game.game import Game
 from blackjack.objects.game.deck import Deck
+from blackjack.objects.game.game import Game
 from blackjack.objects.game.hand import Hand
+from blackjack.objects.users.house import House
+from blackjack.objects.users.player import Player
 
 
 class PlayBlackjack(Game):
-    def __init__(self, numdecks, players, house):
+    def __init__(self, numdecks, house):
         super(PlayBlackjack, self).__init__()
         self.numdecks = numdecks
-        self.players = players
-        self.house = house
+        # self.players = players
+        self.house = House()
+        self.players = dict()
 
         # state variables of the game
         self.hDealer = Hand()
@@ -21,10 +23,18 @@ class PlayBlackjack(Game):
         self._init_mydeck()
 
     def add_player(self, player):
-        self.players.append(player)
+        if not isinstance(player, Player):
+            raise TypeError("Passed in player has to be of type Player!")
 
-    def remove_player(self, player_ind):
-        self.players[player_ind] = []
+        if player.player_identifier in self.players.keys():
+            raise ValueError("Enter more information about your name, or add a number at the end!"
+                             "There is already a player with your name, age and buy in amount..."
+                             "Sorry about that.")
+        self.players[player.player_identifier] = player
+
+    def remove_player(self, player):
+        self.players.pop(player.player_identifier)
+        return 1
 
     def restart(self):
         self._init_mydeck()
@@ -40,19 +50,32 @@ class PlayBlackjack(Game):
         :return:
         """
         if self.in_play == False:
-            for i in range(2):
-                # deal to player
-                card = self.mydeck.deal_card()
-                self.hPlayer.add_card(card)
+            # deal to each player
+            for iplayer in self.players:
+                player = self.players[iplayer.player_identifier]
+                player.deal_hand(self._init_deal())
 
-                # then deal to house
-                card = self.mydeck.deal_card()
-                self.hDealer.add_card(card)
+            # deal to house
+            self.house.deal_hand(self._init_deal())
         else:
             raise RuntimeError("You can't deal while game is still in play!"
                                "End game first!")
 
-    def hit(self):
+    def _init_deal(self):
+        """
+        Helper function to return an initial hand
+        :return:
+        """
+        # deal two cards
+        for i in range(2):
+            # deal to player
+            card = self.mydeck.deal_card()
+            hand = Hand()
+            hand.add_card(card)
+
+        return hand
+
+    def hit(self, player):
         """
         Function to hit the player's hand.
 
@@ -65,7 +88,7 @@ class PlayBlackjack(Game):
         """
         pass
 
-    def stand(self):
+    def stand(self, player):
         """
         Function to stand on player's hand.
 
@@ -75,16 +98,88 @@ class PlayBlackjack(Game):
 
         :return:
         """
-        pass
+        # run a loop to play out the dealer's hand
+        while self.in_play:
+            # dealer's absolute value is still under 17
+            if self.hDealer.get_value() < 17 and self.hDealer.get_soft_value() < 17:
+                card = self.mydeck.deal_card()
+                self.hDealer.add_card(card)
+            # dealer has soft hand above 17
+            elif self.hDealer.get_soft_value() > 17:
+                self.in_play = False
+            # handle case of soft 17
+            elif self.hPlayer.get_soft_value() == 17:
+                # dealer hits soft 17
+                if params.DEALER_HITS_SEVENTEEN:
+                    card = self.mydeck.deal_card()
+                    self.hDealer.add_card(card)
+                # dealer does not hit soft 17
+                else:
+                    self.in_play = False
+            else:
+                self.in_play = False
 
-    def check_player_blackjack(self):
+        # determine loss or win
+        end_hand_val = lambda x: max(x.get_value(), x.get_soft_value())
+        player_val = end_hand_val(self.hPlayer)
+        dealer_val = end_hand_val(self.hDealer)
+
+        # if loss
+        if player_val > dealer_val:
+            # player wins
+
+            print("player wins!")
+        else:
+            # player loses
+            print("player loses!")
+
+    def split(self, _player):
+        """
+        Function to split cards!
+
+        :return:
+        """
+        player = self.players[_player.player_identifier]
+
+        # place bet
+        player.place_bet(player.get_bet())
+
+        # add a hand to player
+        hands = []
+        for card in player.hand.get_cards():
+            hand = Hand()
+            hand.add_card(card)
+            hands.append(hand)
+        player.deal_hand(hand)
+
+        # for each hand hit
+        for hand in player.get_hands():
+            self.hit(hand)
+
+    def double(self, _player):
+        """
+        Function to double your bet for only one more card
+        :return:
+        """
+        player = self.players[_player.player_identifier]
+
+        # place bet
+        player.place_bet(player.get_bet())
+
+        # hit once
+        self.hit(player)
+
+        # stand
+        self.stand(player)
+
+    def check_player_blackjack(self, _player):
         """
         Function to check if a player hand has a blackjack.
 
         :return: True/False (bool)
         """
-
-        if self.hPlayer.get_soft_value() == params.BLACKJACK:
+        player = self.players[_player.player_identifier]
+        if player.hand.get_soft_value() == params.BLACKJACK:
             return True
         else:
             return False

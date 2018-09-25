@@ -6,3 +6,6 @@ class House(BaseUser):
 
     def __init__(self):
         self.bankroll = 1e9
+
+    def __repr__(self):
+        return "The House!"
