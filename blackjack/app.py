@@ -28,6 +28,22 @@ class App(object):
         self.game = Blackjack(numdecks=params.NUMDECKS, players=self.players, house=self.house)
         self.game.start_game()
 
+        # restart
+
+        # bet
+
+        # deal
+
+        # check for bj
+
+        # hit/double/split
+
+        # stand
+
+        # dealer draws
+
+        # check outcome
+
     def end_game(self):
         self.game.end_game()
 

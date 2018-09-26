@@ -151,13 +151,8 @@ class PlayBlackjack(Game):
             # determine loss/win outcome for each player
             for player in self.get_players():
                 for ihand, hand in enumerate(player.get_hands()):
-                    # print(player.amt_bet)
-                    # print(player.get_hands())
                     # determine loss or win
                     player_val = end_hand_val(hand)
-
-                    print(player.get_hands())
-                    print(ihand, dealer_val, player_val)
 
                     if player_val > 21:
                         player.lose(ihand)

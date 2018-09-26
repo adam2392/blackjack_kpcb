@@ -1,25 +1,40 @@
 import os
 import pandas as pd
+import re
 
-basedir = os.path.abspath(__file__)
-basedir = os.path.expanduser("~/Documents/blackjack_kpcb")
-BASICSTRATEGY_FILEPATH = os.path.join(basedir, "blackjack/config/basic_strategy.xlsx")
+import blackjack
+from blackjack.objects.enum.actions import Actions
+from blackjack.config import params
+
+basedir = os.path.dirname(blackjack.__file__)
+basedir = os.path.dirname(os.path.abspath(__file__))
+basedir = os.path.join(basedir, '..')
+# basedir = os.path.expanduser("~/Documents/blackjack_kpcb")
+BASICSTRATEGY_FILEPATH = os.path.join(basedir, "config/basic_strategy.xlsx")
 
 
 class BasicStrategy(object):
-    strategy = None
-
     def __init__(self):
         self.datafile = BASICSTRATEGY_FILEPATH
 
-        print(self.datafile)
         # build out the hashmap
-        self._build_hash_map()
+        self.strategymap = self._build_hash_map()
 
     def _build_hash_map(self):
-        strat_map = pd.read_excel(self.datafile, header=None, index_col=None, names=None)
+        """
+        Helper function to build up the cleaned up dataframe from the basic strategy
+        excel sheet.
+        :return:
+        """
+        strat_map = pd.read_excel(self.datafile, index_col=None, names=None)
 
-        print(strat_map.head())
+        # do some string modification of the strategy head
+        strat_map.index = strat_map.index.str.replace(',', '').str.replace(' ', '')
+        strat_map = strat_map.rename(columns=lambda x: re.sub(',', '', x))
+        for col in strat_map.columns.values:
+            strat_map[col].apply(lambda x: x.replace(',', ''))
+
+        return strat_map
 
     def get_action(self, hash_cards):
         """
@@ -27,25 +42,56 @@ class BasicStrategy(object):
         for the combination of cards, a player has.
 
         :param hash_cards:
-        :return:
+        :return: an action in the space
         """
 
         assert len(hash_cards) == 3
+        # extract total from player card
         player_total = sum(hash_cards[0:2])
-        house_up = hash_cards[2]
 
-        # not able to split
-        if hash_cards[0] != hash_cards[1]:
-            action = self.strategy[player_total][house_up]
+        # extract player cards
+        player_cards = hash_cards[0:2]
+        player_cards.sort()
+        player_cards = [str(i) for i in player_cards]
 
-            assert action in ['s', 'su', 'd', 'h']
+        # extract house card
+        house_up = str(hash_cards[2])
+
+        # map house up card from 1 to Ace
+        if house_up == "1":
+            house_up = 'A'
+
+        # if user does not have ace & it is below 9
+        if "1" not in player_cards and player_total < 9:
+            action = Actions.hit.value
+
+        elif player_total >= 17:
+            action = Actions.stand.value
+
+        elif "1" in player_cards:
+            if "1" == player_cards[1]:
+                rowval = ''.join(['A', 'A'])
+            else:
+                rowval = ''.join(['A', player_cards[1]])
+            action = self.strategymap.loc[rowval, house_up]
+
         # if we can split, let us determine if we can do that
+        elif player_cards[0] == player_cards[1]:
+            rowval = ''.join(player_cards)
+            action = self.strategymap.loc[rowval, house_up]
         else:
-            player_card = hash_cards[0]
-            action = self.strategy[player_card][house_up]
+            rowval = str(player_total)
+            action = self.strategymap.loc[rowval, house_up]
 
-            assert action in ['s', 'su', 'sp', 'd', 'h']
-        return action
+        print(action.lower())
+        assert action.lower() in params.action_space
+        return action.lower()
+
 
 if __name__ == '__main__':
     basicstrategy = BasicStrategy()
+
+    print(basicstrategy.get_action([1, 1, 1]))
+    print(basicstrategy.get_action([1, 2, 2]))
+    print(basicstrategy.get_action([1, 1, 10]))
+    print(basicstrategy.get_action([4, 5, 4]))

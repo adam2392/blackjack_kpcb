@@ -64,7 +64,15 @@ class Hand(Deck):
                 total_val += 1
         return total_val
 
-    def get_cards(self):
+    def get_cards(self, numerical=False):
+        if numerical:
+            cards = []
+            for card in self.cards:
+                if card.get_rank() >= 10:
+                    cards.append(10)
+                else:
+                    cards.append(card.get_rank())
+            return cards
         return self.cards
 
     def can_hit(self):
