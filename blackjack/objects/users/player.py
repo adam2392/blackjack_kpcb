@@ -2,17 +2,14 @@ from blackjack.objects.users.base import BaseUser
 
 
 class Player(BaseUser):
-    age = None
-    amt_buyin = None
-    amt_cashout = None
-    bankroll = None
 
     def __init__(self, name, age, amt_buyin):
         self.name = name
         self.age = float(age)
-        self.amt_buyin = amt_buyin
-        self.bankroll = amt_buyin
-        self.amt_bet = 0
+        self.amt_buyin = float(amt_buyin)
+        self.bankroll = float(amt_buyin)
+        self.amt_bet = []
+        self.total_bet = 0
         self.hands = []
 
         if self.age < 18:
@@ -24,6 +21,9 @@ class Player(BaseUser):
     def __repr__(self):
         return "player: {} ({})".format(self.name, self.age)
 
+    def __cmp__(self, player):
+        return "player: {} ({})".format(self.name, self.age) == "player: {} ({})".format(player.name, player.age)
+
     @property
     def player_identifier(self):
         return "player: {} ({}) ({})".format(self.name, self.age, self.amt_buyin)
@@ -34,22 +34,43 @@ class Player(BaseUser):
                                "Choose to hit, stand, or double!")
         self.hands.append(hand)
 
+    def restart(self):
+        self._reset()
+
     def get_hands(self):
         return self.hands
 
     def cash_out(self):
         self.amt_cashout = self.bankroll
 
-    def lose(self):
-        self.amt_bet = 0
+    def lose(self, ihand):
+        print(self.hands)
+        print(self.amt_bet)
+        self.amt_bet[ihand] = 0
+        self.hands[ihand] = 0
 
-    def win(self):
-        self.bankroll += self.amt_bet
-        self.amt_bet = 0
+        # reset state after handling all the hands
+        if ihand == len(self.hands):
+            self._reset()
+
+    def win(self, ihand):
+        self.bankroll += self.amt_bet[ihand]
+        self.amt_bet[ihand] = 0
+        self.hands[ihand] = 0
+
+        # reset state after we've handled all our hands
+        if ihand == len(self.hands):
+            self._reset()
 
     def place_bet(self, bet):
         self.bankroll -= bet
-        self.amt_bet += bet
+        self.total_bet += bet
+        self.amt_bet.append(bet)
 
-    def get_bet(self):
-        return self.amt_bet
+    def get_total_bet(self):
+        return self.total_bet
+
+    def _reset(self):
+        self.hands = []
+        self.amt_bet = []
+        self.total_bet = 0

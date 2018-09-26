@@ -9,6 +9,8 @@ MAX_SPLIT = 4
 
 BLACKJACK = 21
 
+STRATEGYFILE = './blackjack/config/basic_strategy.xlsx'
+
 NUMDECKS = 1
 
 # action space of the game per player

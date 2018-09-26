@@ -1,10 +1,12 @@
 import pytest
 
+from blackjack.objects.users.player import Player
+
 
 @pytest.mark.usefixture('blackjackgame')
-class Test_Blackjack_Game():
+class Test_Blackjack_Funcs():
     """
-    Tests for the actual blackjack blackjackgame module
+    Tests for the actual blackjack blackjackgame module's basic functions
     """
 
     def test_blackjack_init(self, blackjackgame):
@@ -17,20 +19,47 @@ class Test_Blackjack_Game():
         assert blackjackgame.numdecks >= 1
         assert blackjackgame.in_play == False
 
-    def test_deal(self,blackjackgame):
-        pass
+    def test_add_player(self, blackjackgame):
+        player = Player("John Doe", "18", "500")
+        blackjackgame.add_player(player)
 
-    def test_hit(self, blackjackgame):
-        pass
+        assert isinstance(blackjackgame.players, dict)
+        assert blackjackgame.players[player.player_identifier] == player
 
-    def test_stand(self, blackjackgame):
-        pass
+        with pytest.raises(ValueError):
+            blackjackgame.add_player(player)
 
-    def test_check_blackjack(self, blackjackgame):
-        # check for dealer blackjack
+        with pytest.raises(TypeError):
+            blackjackgame.add_player("hi")
 
-        # check for house blackjack
-        pass
+        # add another player in here to make sure we have both
+        player = Player("John Doe", "18", "501")
+        blackjackgame.add_player(player)
+
+    def test_remove_player(self, blackjackgame):
+        player = Player("John Doe", "18", "500")
+        blackjackgame.remove_player(player)
+
+        with pytest.raises(ValueError):
+            blackjackgame.remove_player("hi")
+
+    def test_place_bets(self, blackjackgame):
+        bet = 100
+
+        for player in blackjackgame.get_players():
+            player.place_bet(bet)
+
+            assert player.get_total_bet() == bet
+
+    def test_restart(self, blackjackgame):
+        blackjackgame.restart()
+
+        assert blackjackgame.in_play == False
+        assert blackjackgame.house.hand == None
+
+        for player in blackjackgame.get_players():
+            for hand in player.get_hands():
+                assert hand == []
 
     def test_end_game(self, blackjackgame):
         blackjackgame.end_game()

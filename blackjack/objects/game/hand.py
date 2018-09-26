@@ -1,4 +1,4 @@
-from blackjack.objects.game.deck import Deck, Card
+from blackjack.objects.game.deck import Deck
 
 
 class Hand(Deck):
@@ -11,6 +11,10 @@ class Hand(Deck):
     def __init__(self, label=''):
         self.cards = []
         self.label = label
+        self.stood = False
+
+    def restart(self):
+        self.cards = []
 
     def add_card(self, card):
         """
@@ -19,6 +23,9 @@ class Hand(Deck):
         :param card:
         :return:
         """
+        if self.stood:
+            raise RuntimeError("Can't add cards after you have stood!")
+
         self.cards.append(card)
 
     def get_value(self):
@@ -52,10 +59,28 @@ class Hand(Deck):
                 total_val += card.get_rank()
         for i in range(numaces):
             if total_val + 11 < 21:
-                total_val += 21
+                total_val += 11
             else:
                 total_val += 1
         return total_val
 
     def get_cards(self):
         return self.cards
+
+    def can_hit(self):
+        """
+        Helper function to determine if this hand is hittable.
+        :return:
+        """
+        if self.get_value() < 21:
+            return True
+        else:
+            return False
+
+    def stand(self):
+        """
+        Makes hand stand.
+
+        :return:
+        """
+        self.stood = True

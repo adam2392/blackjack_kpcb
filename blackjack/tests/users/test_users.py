@@ -1,7 +1,6 @@
 import pytest
-
 from blackjack.objects.users.house import House
-from blackjack.objects.users.player import Player
+from blackjack.objects.game.hand import Hand
 
 class Test_House():
     def test_house(self):
@@ -10,8 +9,18 @@ class Test_House():
         assert isinstance(str(house), str)
         assert isinstance(house.bankroll, float)
 
-class Test_Player():
-    def test_player(self):
-        player = Player("johndoe", "18", "500")
 
+@pytest.mark.usefixture('player')
+class Test_Player():
+    def test_player(self, player):
         assert isinstance(player.player_identifier, str)
+
+    def test_deal_hand(self, player):
+        with pytest.raises(RuntimeError):
+            for i in range(5):
+                hand = Hand()
+                player.deal_hand(hand)
+
+    def test_get_hands(self,player):
+        assert isinstance(player.get_hands(), list)
+
