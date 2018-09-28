@@ -5,12 +5,11 @@ from blackjack.objects.game.blackjack import PlayBlackjack
 from blackjack.objects.users.house import House
 from blackjack.objects.users.player import Player
 
+from blackjack.teacher.base import BasicStrategyTeacher
+
 
 class App(object):
-    players = []
-    game = None
-
-    def __init__(self):
+    def __init__(self, TEACHERMODE=False):
         # initialize cards with a house player
         self.house = House()
 
@@ -19,6 +18,9 @@ class App(object):
 
         # initialize an empty game
         self.game = PlayBlackjack(numdecks=params.NUMDECKS)
+
+        self.TEACHERMODE = TEACHERMODE
+        self.basic_strat = BasicStrategyTeacher()
 
     def start_game(self):
         """
@@ -35,34 +37,55 @@ class App(object):
         # deals to the players
         self.game.deal()
 
-        # loop through players, hands
-        for player in self.game.get_players():
-            print("Hello {} player".format(player))
+        # get the house hand's numerical values
+        hhand = self.game.house.hand.get_cards(numerical=True)
 
-            for hand in player.get_hands():
+        housebj = self.game.check_dealer_blackjack()
 
-                # start game state -> hit, stand, split, double, surrender -> house outcome
-                while self.game.is_in_play():
-                    print("What action would you like to take? (hit, stand, double, split)")
+        # if house does not have a blackjack... proceed
+        if not housebj:
+            # loop through players, hands
+            for player in self.game.get_players():
+                print("Hello {} player".format(player))
 
-                    # display player hand
-                    print("You have {} with total value of {}, or {}".format(
-                        hand, hand.get_value(), hand.get_soft_value()))
+                for hand in player.get_hands():
 
-                    # query action
-                    action = get_game_info()
+                    playerbj = self.game.check_player_blackjack(hand)
 
-                    if action == 'hit':
-                        self.game.hit(hand)
-                    elif action == 'stand':
-                        self.game.stand(hand)
-                        break
-                    elif action == 'double':
-                        self.game.double(player, hand)
-                    elif action == 'split':
-                        self.game.split(player, hand)
-                    else:
-                        print("Enter a valid action to take!")
+                    if playerbj:
+                        # pay out player 3 to 2
+                        print("You have a blackjack! Paid 3 to 2.")
+                        continue
+
+                    # start game state -> hit, stand, split, double, surrender -> house outcome
+                    while self.game.is_in_play():
+                        print("What action would you like to take? (hit, stand, double, split)")
+
+                        # display player hand
+                        print("You have {} with total value of {}, or {}".format(
+                            hand, hand.get_value(), hand.get_soft_value()))
+
+                        # display suggested action
+                        if self.TEACHERMODE:
+                            phand = hand.get_cards(numerical=True)
+                            suggested_action = self.basic_strat.suggest_action(hhand, phand)
+
+                            print("Basic strategy says to {}".format(suggested_action))
+
+                        # query action
+                        action = get_game_info()
+
+                        if action == 'hit':
+                            self.game.hit(hand)
+                        elif action == 'stand':
+                            self.game.stand(hand)
+                            break
+                        elif action == 'double':
+                            self.game.double(player, hand)
+                        elif action == 'split':
+                            self.game.split(player, hand)
+                        else:
+                            print("Enter a valid action to take!")
 
         # now dealer gets dealt cards
         self.game.stand()
@@ -99,32 +122,8 @@ class App(object):
         self.game.remove_player(name)
         self.num_players -= 1
 
-
-class SubApp():
-
-    @staticmethod
-    def check_blackjack(game):
-        """
-        Function wrapper to check blackjacks
-
-        To be implemented in future version: having multiple starting hands for players.
-        :return: (tuple) of the house_bj outcome and the player_bjs outcome (as a list)
-        """
-        # initialize list to store outcome of player blackjacks
-        player_bjs = []
-        for player in game.get_players():
-            # player_bj = []
-            for hand in player.get_hands():
-                is_bj = game.check_player_blackjack(hand)
-                player_bjs.append(is_bj)
-
-        # check for bj
-        house_bj = game.check_dealer_blackjack()
-        return house_bj, player_bjs
-
-    @staticmethod
-    def check_outcome(self, game):
-        game.check_outcome()
+    def check_outcome(self):
+        self.game.check_outcome()
 
 
 def get_player_info():
