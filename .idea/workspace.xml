@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/app.py" line="84" mnemonic="9" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e068b61-98a8-461d-9921-a9c51fdd23f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/background.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/install.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/run.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/test.rst" afterDir="false" />
+    <list default="true" id="7e068b61-98a8-461d-9921-a9c51fdd23f5" name="Default Changelist" comment="han">
+      <change afterPath="$PROJECT_DIR$/blackjack/objects/cards/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/config/params.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/config/params.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/objects/game/blackjack.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/game/blackjack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/objects/game/deck.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/cards/deck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/objects/game/hand.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/cards/hand.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/objects/users/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/users/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/objects/users/house.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/users/house.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/objects/users/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/objects/users/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/teacher/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/teacher/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/tests/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/tests/teacher/test_basicstrategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/tests/teacher/test_basicstrategy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/tests/test_blackjack_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/tests/test_blackjack_game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/tests/test_objects/test_deck.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/tests/test_objects/test_deck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/tests/test_objects/test_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/tests/test_objects/test_game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/tests/test_objects/test_hand.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/tests/test_objects/test_hand.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/tests/test_objects/test_play_blackjack_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/tests/test_objects/test_play_blackjack_game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blackjack/tests/users/test_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/blackjack/tests/users/test_users.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,34 +36,37 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="4" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="72" />
+          <entry key="py" value="93" />
           <entry key="rst" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="72" />
+          <entry key="Python" value="93" />
           <entry key="ReST" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="14277" />
+          <entry key="py" value="23721" />
           <entry key="rst" value="1054" />
+          <entry key="txt" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="14277" />
+          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="Python" value="23721" />
           <entry key="ReST" value="1054" />
         </counts>
       </usages-collector>
@@ -87,44 +106,71 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/blackjack/tests/conftest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/test.rst">
-          <provider selected="true" editor-type-id="restructured-text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/install.rst">
-          <provider selected="true" editor-type-id="restructured-text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/run.rst">
-          <provider selected="true" editor-type-id="restructured-text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blackjack/utility/strategy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="78" column="48" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/blackjack/objects/users/player.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="303">
+                  <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#0#49#0" expanded="true" />
+                    <marker date="1538105873929" expanded="true" signature="3130:3139" ph="..." />
+                    <marker date="1538105873929" expanded="true" signature="3217:3378" ph="..." />
+                    <marker date="1538105873929" expanded="true" signature="3669:3691" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/blackjack/objects/game/blackjack.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="207">
+                  <caret line="257" column="25" lean-forward="true" selection-start-line="257" selection-start-column="25" selection-end-line="257" selection-end-column="25" />
+                  <folding>
+                    <element signature="e#0#35#0" expanded="true" />
+                    <marker date="1538112321982" expanded="true" signature="5319:5325" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/blackjack/tests/test_objects/test_play_blackjack_game.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="265">
+                  <caret line="28" selection-start-line="28" selection-end-line="28" />
+                  <folding>
+                    <element signature="e#0#13#0" expanded="true" />
+                    <marker date="1538112890825" expanded="true" signature="936:1253" ph="..." />
+                    <marker date="1538112890825" expanded="true" signature="1294:1316" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="3600">
+                  <caret line="240" column="43" selection-start-line="240" selection-start-column="43" selection-end-line="240" selection-end-column="43" />
+                  <folding>
+                    <element signature="e#0#15#0" expanded="true" />
+                    <marker date="1538112393145" expanded="true" signature="3084:3878" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -140,6 +186,11 @@
       <find>self.hDealer</find>
       <find>amt_bet</find>
       <find>s</find>
+      <find>self.label</find>
+      <find>bet</find>
+      <find>.values</find>
+      <find>add</find>
+      <find>self.numdecks</find>
     </findStrings>
     <replaceStrings>
       <replace>blackjackgame</replace>
@@ -165,37 +216,40 @@
         <option value="$PROJECT_DIR$/blackjack/objects/game/game.py" />
         <option value="$PROJECT_DIR$/blackjack/tests/test_objects/test_game.py" />
         <option value="$PROJECT_DIR$/blackjack/tests/test_objects/test_deck.py" />
-        <option value="$PROJECT_DIR$/blackjack/objects/game/deck.py" />
-        <option value="$PROJECT_DIR$/blackjack/objects/users/base.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
-        <option value="$PROJECT_DIR$/blackjack/tests/users/test_users.py" />
-        <option value="$PROJECT_DIR$/blackjack/objects/users/house.py" />
-        <option value="$PROJECT_DIR$/blackjack/objects/users/player.py" />
-        <option value="$PROJECT_DIR$/blackjack/tests/test_objects/test_play_blackjack_game.py" />
         <option value="$PROJECT_DIR$/blackjack/tests/test_objects/test_blackjack_game.py" />
         <option value="$PROJECT_DIR$/blackjack/tests/test_objects/test_hand.py" />
-        <option value="$PROJECT_DIR$/blackjack/tests/conftest.py" />
-        <option value="$PROJECT_DIR$/blackjack/objects/game/blackjack.py" />
         <option value="$PROJECT_DIR$/blackjack/teacher/base.py" />
-        <option value="$PROJECT_DIR$/blackjack/objects/game/hand.py" />
         <option value="$PROJECT_DIR$/blackjack/config/params.py" />
         <option value="$PROJECT_DIR$/blackjack/objects/enum/actions.py" />
         <option value="$PROJECT_DIR$/blackjack/utility/strategy.py" />
-        <option value="$PROJECT_DIR$/blackjack/tests/teacher/test_basicstrategy.py" />
-        <option value="$PROJECT_DIR$/blackjack/app.py" />
         <option value="$PROJECT_DIR$/docs/install.rst" />
         <option value="$PROJECT_DIR$/docs/test.rst" />
         <option value="$PROJECT_DIR$/docs/background.rst" />
         <option value="$PROJECT_DIR$/docs/run.rst" />
         <option value="$PROJECT_DIR$/docs/index.rst" />
+        <option value="$PROJECT_DIR$/blackjack/app.py" />
+        <option value="$PROJECT_DIR$/blackjack/objects/users/player.py" />
+        <option value="$PROJECT_DIR$/blackjack/objects/users/base.py" />
+        <option value="$PROJECT_DIR$/blackjack/objects/users/house.py" />
+        <option value="$PROJECT_DIR$/blackjack/objects/game/deck.py" />
+        <option value="$PROJECT_DIR$/blackjack/objects/game/hand.py" />
+        <option value="$PROJECT_DIR$/blackjack/objects/cards/hand.py" />
+        <option value="$PROJECT_DIR$/blackjack/objects/game/blackjack.py" />
+        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/blackjack/tests/conftest.py" />
+        <option value="$PROJECT_DIR$/blackjack/tests/teacher/test_basicstrategy.py" />
+        <option value="$PROJECT_DIR$/blackjack/tests/users/test_users.py" />
+        <option value="$PROJECT_DIR$/blackjack/tests/test_blackjack_game.py" />
+        <option value="$PROJECT_DIR$/blackjack/tests/test_objects/test_play_blackjack_game.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="512" />
-    <option name="y" value="22" />
-    <option name="width" value="1160" />
-    <option name="height" value="856" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="56" />
+    <option name="y" value="36" />
+    <option name="width" value="1148" />
+    <option name="height" value="929" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -213,13 +267,34 @@
             <path>
               <item name="blackjack_kpcb" type="b2602c69:ProjectViewProjectNode" />
               <item name="blackjack_kpcb" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="blackjack" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="blackjack_kpcb" type="b2602c69:ProjectViewProjectNode" />
               <item name="blackjack_kpcb" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="_build" type="462c0819:PsiDirectoryNode" />
+              <item name="blackjack" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blackjack_kpcb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blackjack_kpcb" type="462c0819:PsiDirectoryNode" />
+              <item name="blackjack" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="teacher" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blackjack_kpcb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blackjack_kpcb" type="462c0819:PsiDirectoryNode" />
+              <item name="blackjack" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="test_objects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blackjack_kpcb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blackjack_kpcb" type="462c0819:PsiDirectoryNode" />
+              <item name="blackjack" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -230,21 +305,21 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/adam2392/Documents/blackjack_kpcb/blackjack/objects/game/deck.py" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eztrackv2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/blackjack/objects/game" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/docs" />
+      <recent name="$PROJECT_DIR$/blackjack/tests" />
+      <recent name="$PROJECT_DIR$/blackjack" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/blackjack/tests/test_objects" />
       <recent name="$PROJECT_DIR$/blackjack/tests/users" />
       <recent name="$PROJECT_DIR$/blackjack/utility" />
-      <recent name="$PROJECT_DIR$/blackjack/teacher" />
-      <recent name="$PROJECT_DIR$/blackjack/objects/users" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/docs" />
-      <recent name="$PROJECT_DIR$/blackjack/tests" />
-      <recent name="$PROJECT_DIR$/blackjack" />
       <recent name="$PROJECT_DIR$/blackjack/teacher" />
       <recent name="$PROJECT_DIR$/blackjack/objects/users" />
     </key>
@@ -274,7 +349,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/blackjack/app.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -342,7 +417,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6230f7bd-d42b-4003-b68d-f60a74702c75" name="Default Changelist" comment="" />
+      <changelist id="7e068b61-98a8-461d-9921-a9c51fdd23f5" name="Default Changelist" comment="" />
       <created>1537157257862</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -351,14 +426,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="512" y="22" width="1160" height="856" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3193202" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15873016" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49928057" weight="0.32841328" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49928057" weight="0.32810867" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928057" weight="0.24021593" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49928057" weight="0.399754" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -393,7 +468,7 @@
     <entry file="file://$PROJECT_DIR$/blackjack/objects/users/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/objects/game/__init__.py">
+    <entry file="file://$PROJECT_DIR$/blackjack/objects/cards/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/blackjack/config/__init__.py">
@@ -402,66 +477,9 @@
     <entry file="file://$PROJECT_DIR$/blackjack/objects/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/tests/test_objects/test_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="46" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/objects/users/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blackjack/tests/test_objects/__init__.py" />
     <entry file="file://$PROJECT_DIR$/blackjack/tests/users/__init__.py" />
     <entry file="file://$PROJECT_DIR$/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/blackjack/tests/test_objects/test_deck.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/objects/game/deck.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="79" column="29" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/objects/game/game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/objects/users/house.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/objects/users/player.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="691">
-          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/tests/test_objects/test_hand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blackjack/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -486,57 +504,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/tests/users/test_users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/tests/test_blackjack_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/objects/game/blackjack.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-657">
-          <caret line="154" column="51" selection-start-line="154" selection-start-column="51" selection-end-line="154" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blackjack/teacher/master_counter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="16" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/tests/test_objects/test_play_blackjack_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/objects/game/hand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-143">
-          <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -544,9 +515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding>
-            <marker date="1537937905215" expanded="true" signature="44:49" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -554,16 +522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/utility/strategy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="78" column="48" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -576,15 +534,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/install.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/test.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/run.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/conf.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -599,30 +548,176 @@
     <entry file="file://$PROJECT_DIR$/docs/index.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/app.py">
+    <entry file="file://$PROJECT_DIR$/docs/test.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/run.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/install.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/objects/users/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+        <state relative-caret-position="45">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/objects/users/house.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blackjack/tests/teacher/test_basicstrategy.py">
+    <entry file="file://$PROJECT_DIR$/blackjack/objects/game/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="45">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/utility/strategy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="78" column="48" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/objects/cards/deck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="100" column="17" lean-forward="true" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/objects/cards/hand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding>
+            <marker date="1538112234180" expanded="true" signature="349:542" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3600">
+          <caret line="240" column="43" selection-start-line="240" selection-start-column="43" selection-end-line="240" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1538112393145" expanded="true" signature="3084:3878" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/blackjack/tests/conftest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+        <state relative-caret-position="420">
+          <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding>
+            <element signature="e#53#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/tests/test_objects/test_deck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/tests/test_blackjack_game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1538112822462" expanded="true" signature="1389:1398" ph="..." />
+            <marker date="1538112822462" expanded="true" signature="1389:1565" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/tests/teacher/test_basicstrategy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="24" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="19" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/tests/users/test_users.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/objects/users/player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <marker date="1538105873929" expanded="true" signature="3130:3139" ph="..." />
+            <marker date="1538105873929" expanded="true" signature="3217:3378" ph="..." />
+            <marker date="1538105873929" expanded="true" signature="3669:3691" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/tests/test_objects/test_hand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/objects/game/blackjack.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="257" column="25" lean-forward="true" selection-start-line="257" selection-start-column="25" selection-end-line="257" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <marker date="1538112321982" expanded="true" signature="5319:5325" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/tests/test_objects/test_game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blackjack/tests/test_objects/test_play_blackjack_game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1538112890825" expanded="true" signature="936:1253" ph="..." />
+            <marker date="1538112890825" expanded="true" signature="1294:1316" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,18 +1,13 @@
-from blackjack.objects.game.hand import Hand
-
-
 class BaseUser(object):
-    amt = 0
+    """
+    A base class for any cards user that will be playing a card cards that involves hands of cards.
 
-    def assign_hand(self, hand):
-        if not isinstance(hand, Hand):
-            raise AttributeError("Need to assign a type of Hand to the player!")
-        self.hand = hand
+    """
+    def assign_hand(self):
+        pass
 
     def win(self):
-        if not isinstance(amt, float) and not isinstance(amt, int):
-            raise AttributeError("Won amount has to be in the form of a number!")
+        pass
 
     def lose(self):
-        if not isinstance(amt, float) and not isinstance(amt, int):
-            raise AttributeError("Lost amount has to be in the form of a number!")
+        pass

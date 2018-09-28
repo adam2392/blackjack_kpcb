@@ -1,24 +1,24 @@
-""" Define fixtures available for blackjack game """
+""" Define fixtures available for blackjack cards """
 import pytest
 
 from blackjack.objects.game.blackjack import PlayBlackjack
-from blackjack.objects.game.deck import Deck
+from blackjack.objects.cards.deck import Deck
 from blackjack.objects.game.game import Game
-from blackjack.objects.game.hand import Hand
+from blackjack.objects.cards.hand import Hand
 from blackjack.objects.users.player import Player
 
 
 @pytest.fixture(scope='module')
 def blackjackgame():
-    # initialize the game state
-    game = PlayBlackjack(numdecks=1, house='casino')
+    # initialize the cards state
+    game = PlayBlackjack(numdecks=1)
 
     return game
 
 
 @pytest.fixture(scope='class')
 def game():
-    # initialize the game state
+    # initialize the cards state
     game = Game()
 
     return game
@@ -26,7 +26,7 @@ def game():
 
 @pytest.fixture(scope='class')
 def deck():
-    # initialize the game state
+    # initialize the cards state
     deck = Deck()
 
     return deck
@@ -34,7 +34,7 @@ def deck():
 
 @pytest.fixture(scope='class')
 def hand():
-    # initialize the game state
+    # initialize the cards state
     hand = Hand()
 
     return hand
@@ -42,7 +42,7 @@ def hand():
 
 @pytest.fixture(scope='class')
 def player():
-    # initialize the game state
-    player = Player("John doe", "18", "500")
+    # initialize the cards state
+    player = Player("John doe")
 
     return player

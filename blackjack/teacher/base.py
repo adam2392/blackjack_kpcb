@@ -8,10 +8,10 @@ class BaseTeacher(ABC):
     def suggest_action(self):
         """
         Function that suggests an action based on the
-        current state of the game.
+        current state of the cards.
 
         Most learners will have the ability to process
-        and remember previous game state information by nature
+        and remember previous cards state information by nature
         of their models.
 
         :param house:

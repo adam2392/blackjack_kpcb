@@ -4,6 +4,15 @@ from blackjack.config import params
 
 
 def cmp(a, b):
+    """
+    A helper function to compare two objects.
+    Returns a positive number if this > other; negative if other > this;
+    and 0 if they are equivalent.
+
+    :param a: first object
+    :param b: second object
+    :return: True/False
+    """
     return (a > b) - (a < b)
 
 
@@ -57,9 +66,19 @@ class Card(object):
             return False
 
     def get_rank(self):
+        """
+        Gets the rank of this specific card.
+
+        :return:
+        """
         return self.rank
 
     def get_suit(self):
+        """
+        Gets the suit of this specific card.
+
+        :return:
+        """
         return self.suit
 
 
@@ -68,6 +87,8 @@ class Deck(object):
     Class for representing a deck of cards.
 
     Essentially creates a stack of cards as a data structure to hold the deck.
+    Note that the number of cards in our end deck does not have to be 52, but can be multiples
+    depending on the number of decks we use.
 
     Attributes:
       cards: list of Card objects.
@@ -100,8 +121,17 @@ class Deck(object):
         return len(self.cards)
 
     def shuffle(self):
-        """Shuffles the cards in this deck."""
+        """
+        Function to shuffle in place the stack of cards in our deck object.
+
+        :return:
+        """
         random.shuffle(self.cards)
 
     def deal_card(self):
+        """
+        Function to deal a card from the deck by popping a card from our stack of cards.
+
+        :return: (Card) a card object.
+        """
         return self.cards.pop()

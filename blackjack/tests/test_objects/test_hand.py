@@ -1,12 +1,12 @@
 import pytest
 
-from blackjack.objects.game.deck import Deck
+from blackjack.objects.cards.deck import Deck
 
 
 @pytest.mark.usefixture('hand')
 class Test_Hand():
     """
-    Tests for the game module that has basic functionality of a deck.
+    Tests for the cards module that has basic functionality of a deck.
     """
 
     def test_hand(self, hand):
