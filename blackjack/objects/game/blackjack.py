@@ -98,6 +98,9 @@ class PlayBlackjack(Game):
         for player in self.get_players():
             player.restart()
 
+    def freeze_play(self):
+        self.in_play = False
+
     def _init_mydeck(self):
         # initialize mydeck and set it
         self.mydeck = Deck(self.numdecks)
@@ -176,30 +179,22 @@ class PlayBlackjack(Game):
         :return:
         """
         # stands the hand
-        if hand is not None:
+        if hand is not None and not hand.stood:
             hand.stand()
-        # else all hands are stood
+
+            players = self.get_players()
+            all_stood = True
+            for player in players:
+                if any([not h.stood for h in player.get_hands()]):
+                    all_stood = False
+            # all hands are stood
+            if all_stood:
+                self.in_play = False
         else:
             # run a loop to play out the dealer's hand
-            while self.in_play:
-                # dealer's absolute value is still under 17
-                if self.house.hand.get_value() < 17 and self.house.hand.get_soft_value() < 17:
-                    card = self.mydeck.deal_card()
-                    self.house.hand.add_card(card)
-                # dealer has soft hand above 17
-                elif self.house.hand.get_soft_value() > 17:
-                    self.in_play = False
-                # handle case of soft 17
-                elif self.house.hand.get_soft_value() == 17 and self.house.hand.get_value() < 17:
-                    # dealer hits soft 17
-                    if params.DEALER_HITS_SEVENTEEN:
-                        card = self.mydeck.deal_card()
-                        self.house.hand.add_card(card)
-                    # dealer does not hit soft 17
-                    else:
-                        self.in_play = False
-                else:
-                    self.in_play = False
+            while self.house.hand.can_hit(ishouse=True):
+                card = self.mydeck.deal_card()
+                self.house.hand.add_card(card)
 
     def determine_outcomes(self):
         """
@@ -222,16 +217,22 @@ class PlayBlackjack(Game):
 
                     if player_val > 21:
                         player.lose(ihand)
+
+                        print("{} lost hand with {}!".format(player, hand.get_total_value()))
                     elif dealer_val > 21:
                         player.win(ihand)
+                        print("{} won hand with {}!".format(player, hand.get_total_value()))
 
                     # if loss
                     elif player_val > dealer_val:
                         # player wins
                         player.win(ihand)
+                        print("{} won hand with {}!".format(player, hand.get_total_value()))
+
                     else:
                         # player loses
                         player.lose(ihand)
+                        print("{} lost hand with {}!".format(player, hand.get_total_value()))
 
     def split(self, player, hand):
         """
@@ -290,6 +291,8 @@ class PlayBlackjack(Game):
 
         :return: True/False (bool)
         """
+        print(self.house.hand.get_soft_value())
+        print(params.BLACKJACK)
         if self.house.hand.get_soft_value() == params.BLACKJACK:
             return True
         else:

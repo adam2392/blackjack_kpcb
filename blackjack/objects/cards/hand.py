@@ -1,4 +1,5 @@
 from blackjack.objects.cards.deck import Card
+from blackjack.config import params
 
 
 class Hand(object):
@@ -8,9 +9,18 @@ class Hand(object):
 
     """
 
-    def __init__(self, label=''):
+    def __init__(self):
         self.cards = []
         self.stood = False
+
+    def __repr__(self):
+        return self.get_cards()
+
+    def __str__(self):
+        handstr = "You have: {}".format([card for card in self.get_cards()])
+        handstr += "\nThe total value is {} with soft value of {}".format(
+            self.get_value(), self.get_soft_value())
+        return handstr
 
     def split_cards(self):
         if len(self.cards) != 2:
@@ -42,6 +52,25 @@ class Hand(object):
             raise TypeError("Need to add cards of type Card into the hand!")
 
         self.cards.append(card)
+
+    def get_total_value(self):
+        """
+        Function to get the total value of the hand.
+
+        :return: (int) the best value of your hand, or the hard value of the hand.
+        """
+        soft_val = self.get_soft_value()
+        hard_val = self.get_value()
+
+        # choose the max value < 21 between the two
+        if hard_val > 21:
+            hard_val = 0
+        if soft_val > 21:
+            soft_val = 0
+        if hard_val == 0 and soft_val == 0:
+            return self.get_value()
+
+        return max(soft_val, hard_val)
 
     def get_value(self):
         """
@@ -77,7 +106,7 @@ class Hand(object):
 
         # add up the aces
         for i in range(numaces):
-            if total_val + 11 < 21:
+            if total_val + 11 <= 21:
                 total_val += 11
             else:
                 total_val += 1
@@ -101,11 +130,22 @@ class Hand(object):
             return cards
         return self.cards
 
-    def can_hit(self):
+    def can_hit(self, ishouse=False):
         """
         Helper function to determine if this hand is hittable.
         :return: (bool)
         """
+        if ishouse:
+            if self.get_soft_value() == 17 and self.get_value() < 17:
+                # dealer hits soft 17
+                if params.DEALER_HITS_SEVENTEEN:
+                    return True
+
+            elif self.get_value() < 17 and self.get_soft_value() < 17:
+                return True
+            else:
+                return False
+
         if self.get_value() < 21 and not self.stood:
             return True
         else:

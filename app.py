@@ -2,17 +2,19 @@ import argparse
 
 from blackjack.config import params
 from blackjack.objects.game.blackjack import PlayBlackjack
-from blackjack.objects.users.house import House
 from blackjack.objects.users.player import Player
 
 from blackjack.teacher.base import BasicStrategyTeacher
 
+from blackjack.utility.utils import get_game_info, get_cashout_info, get_player_info
+
+
+# from blackjack.objects.cards.hand import Hand
+# from blackjack.objects.cards.deck import Card
+
 
 class App(object):
     def __init__(self, TEACHERMODE=False):
-        # initialize cards with a house player
-        self.house = House()
-
         # start with 0 players
         self.num_players = 0
 
@@ -37,19 +39,32 @@ class App(object):
         # deals to the players
         self.game.deal()
 
+        # bjhand = Hand()
+        # bjhand.add_card(Card(0, 1))
+        # bjhand.add_card(Card(0, 10))
+
+        self.game.house.hand = bjhand
         # get the house hand's numerical values
         hhand = self.game.house.hand.get_cards(numerical=True)
 
         housebj = self.game.check_dealer_blackjack()
 
-        # if house does not have a blackjack... proceed
-        if not housebj:
+        print("\nHouse has face up card: {}".format(self.game.house.hand.get_cards()[0]))
+
+        # start game state -> hit, stand, split, double, surrender -> house outcome
+        while self.game.is_in_play():
+            # if house does not have a blackjack... proceed
+            if housebj:
+                self.game.freeze_play()
+                print("Dealer has blackjack!")
+                break
+
             # loop through players, hands
             for player in self.game.get_players():
-                print("Hello {} player".format(player))
+                print("\nHello {}!".format(player))
 
                 for hand in player.get_hands():
-
+                    # does the player have a blackjack?
                     playerbj = self.game.check_player_blackjack(hand)
 
                     if playerbj:
@@ -57,41 +72,48 @@ class App(object):
                         print("You have a blackjack! Paid 3 to 2.")
                         continue
 
-                    # start game state -> hit, stand, split, double, surrender -> house outcome
-                    while self.game.is_in_play():
-                        print("What action would you like to take? (hit, stand, double, split)")
+                    print("\nWhat action would you like to take? (hit, stand, double, split)")
+                    # display player hand
+                    print("\n", hand)
+                    # print("\nYou have {} with total value of {}, or {}".format(
+                    #     hand, hand.get_value(), hand.get_soft_value()))
 
-                        # display player hand
-                        print("You have {} with total value of {}, or {}".format(
-                            hand, hand.get_value(), hand.get_soft_value()))
+                    # display suggested action
+                    if self.TEACHERMODE:
+                        phand = hand.get_cards(numerical=True)
+                        suggested_action = self.basic_strat.suggest_action(hhand, phand)
 
-                        # display suggested action
-                        if self.TEACHERMODE:
-                            phand = hand.get_cards(numerical=True)
-                            suggested_action = self.basic_strat.suggest_action(hhand, phand)
+                        print("Basic strategy says to {}".format(suggested_action))
 
-                            print("Basic strategy says to {}".format(suggested_action))
+                    # query action
+                    action = get_game_info()
 
-                        # query action
-                        action = get_game_info()
+                    # apply action
+                    if action == 'hit':
+                        self.game.hit(hand)
+                    elif action == 'stand':
+                        self.game.stand(hand)
+                        break
+                    elif action == 'double':
+                        self.game.double(player, hand)
+                    elif action == 'split':
+                        self.game.split(player, hand)
+                    else:
+                        print("\nEnter a valid action to take!\n")
 
-                        if action == 'hit':
-                            self.game.hit(hand)
-                        elif action == 'stand':
-                            self.game.stand(hand)
-                            break
-                        elif action == 'double':
-                            self.game.double(player, hand)
-                        elif action == 'split':
-                            self.game.split(player, hand)
-                        else:
-                            print("Enter a valid action to take!")
+        # reveal the dealer card
+        self.reveal_dealer_card()
 
-        # now dealer gets dealt cards
-        self.game.stand()
+        if not housebj:
+            # now dealer gets dealt cards
+            self.game.stand()
+            self.show_dealer_outcome()
 
         # determine outcomes
         self.game.determine_outcomes()
+
+        # restart game now that we have settled
+        self.restart_game()
 
         return 1
 
@@ -114,113 +136,58 @@ class App(object):
 
         self.game.add_player(Player(name=name))
         self.num_players += 1
+        print("Added player {}".format(name))
 
     def cash_out_player(self, name):
         if self.num_players == 0:
-            raise ValueError("You can not remove a player if there are none!")
+            print("You can not remove a player if there are none!")
+            return
 
         self.game.remove_player(name)
         self.num_players -= 1
+        print("Cashed out player {}".format(name))
 
     def check_outcome(self):
-        self.game.check_outcome()
+        self.game.determine_outcomes()
 
+    def reveal_dealer_card(self):
+        dealer_hand = self.game.house.hand.get_cards()
 
-def get_player_info():
-    parser = argparse.ArgumentParser(usage="Please enter the player's name. "
-                                           "(e.g. Adam Li) "
-                                           "If the name is not unique in our system, please enter numbers afterwards. "
-                                           "(e.g. Adam Li001)")
-    parser.add_argument('name', type=str)
+        print("\nDealer has {}. Dealer is now being dealt cards...\n".format(dealer_hand))
 
-    while True:
-        print("Enter a valid players name please who wants to start playing!")
-        astr = input('$: ')
+    def show_dealer_outcome(self):
+        dealer_hand = self.game.house.hand
 
-        try:
-            args = parser.parse_args(astr.split())
-        except SystemExit:
-            # trap argparse error message
-            print('error please enter a valid name')
-            continue
+        print("\nDealer has {}.".format(dealer_hand.get_cards()))
 
-        name = args.name
-        if len(name) > 0:
-            break
-
-    print("Adding player {}".format(name))
-    return name
-
-
-def get_cashout_info():
-    parser = argparse.ArgumentParser(usage="Please enter the player's name who will"
-                                           "be cashing out and leaving!")
-    parser.add_argument('name', type=str)
-
-    while True:
-        print("Enter a valid players name please to cash out!")
-        astr = input('$: ')
-
-        try:
-            args = parser.parse_args(astr.split())
-        except SystemExit:
-            # trap argparse error message
-            print('error please enter a valid name')
-            continue
-
-        name = args.name
-        if len(name) > 0:
-            break
-
-    print("Cashing out player {}".format(name))
-    return name
-
-
-def get_game_info():
-    parser = argparse.ArgumentParser(prog='BLACKJACK',
-                                     usage="You are on your hand. \n"
-                                           "Please enter one of the following commands to proceed: \n"
-                                           "hit, double, split, stand, help, or quit")
-    parser.add_argument('cmd', choices=['hit', 'double',
-                                        'split', 'stand',
-                                        'help', 'quit'])
-    parser.print_help()
-    while True:
-        print("Enter a valid command!")
-        astr = input('$: ')
-
-        try:
-            args = parser.parse_args(astr.split())
-        except SystemExit:
-            # trap argparse error message
-            print('error please enter a valid command')
-            continue
-
-        action = args.cmd
-        break
-
-    return action
+        if dealer_hand.get_total_value() > 21:
+            print("Dealer busted!")
+        else:
+            print("Dealer has {}".format(dealer_hand.get_total_value()))
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(prog='BLACKJACK', description='Blackjack cards with '
-                                                                   'optional help from a'
-                                                                   'learning agent,'
-                                                                   ' monte-carlo simulator,'
-                                                                   ' or brute-force counter',
-                                     usage="This is the blackjack cards app made by Adam Li. \n"
-                                           "Please enter one of the following commands to begin: \n"
-                                           "start, add_player, help, or quit")
+    parser = argparse.ArgumentParser(prog='BLACKJACK', description="This is the blackjack cards app made by Adam Li. \n"
+                                                                   'Basic game play with '
+                                                                   'optional help from a '
+                                                                   'basic strategy teacher, '
+                                                                   'learning agent, '
+                                                                   'monte-carlo simulator, ',
+                                     # 'or brute-force counter',
+                                     usage="Please enter one of the following commands: \n\n"
+                                           "start, add_player, help, or quit\n")
     parser.add_argument('cmd', choices=['start',
                                         'add_player',
                                         'cash_out',
                                         'help', 'quit'])
 
+    print("\033c")
     # initialize application
     app = App()
 
     # print help at the beginning
     parser.print_help()
+    parser.print_usage()
 
     # run terminal in infinite loop
     while True:
@@ -239,14 +206,18 @@ if __name__ == '__main__':
             # start cards
             start_status = app.start_game()
 
+            print("\n\nNew game starting!")
+            parser.print_usage()
         elif args.cmd in ['add_player']:
             player_name = get_player_info()
             app.add_player(player_name)
 
+            parser.print_usage()
         elif args.cmd in ['cash_out']:
             player_name = get_cashout_info()
             app.cash_out_player(player_name)
 
+            parser.print_usage()
         elif args.cmd == 'help':
             parser.print_help()
 
