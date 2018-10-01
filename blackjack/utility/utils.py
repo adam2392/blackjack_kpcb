@@ -48,13 +48,25 @@ def get_cashout_info():
     return name
 
 
-def get_game_info():
+def get_game_info(app, can_double, splittable):
+    if splittable:
+        cmd_choices = ['hit', 'double',
+                     'split', 'stand',
+                     'help']
+        usage_str = "hit, stand, (optional) double, (optional) split, or help."
+    elif not splittable and can_double:
+        cmd_choices = ['hit', 'double', 'stand',
+                       'help']
+        usage_str = "hit, stand, (optional) double, or help."
+    else:
+        cmd_choices = ['hit', 'stand',
+                       'help']
+        usage_str = "hit, stand, or help."
+
     parser = argparse.ArgumentParser(prog='BLACKJACK',
                                      usage="\nPlease enter one of the following commands to proceed: \n"
-                                           "hit, double, split, stand, help, or quit")
-    parser.add_argument('cmd', choices=['hit', 'double',
-                                        'split', 'stand',
-                                        'help', 'quit'])
+                                           +usage_str)
+    parser.add_argument('cmd', choices=cmd_choices)
     parser.print_usage()
 
     while True:
@@ -69,11 +81,8 @@ def get_game_info():
         if args.cmd == 'help':
             parser.print_help()
 
-        elif args.cmd == 'quit':
-            app.end_game()
-            return "quit"
-
-        action = args.cmd
-        break
+        else:
+            action = args.cmd
+            break
 
     return action

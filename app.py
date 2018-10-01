@@ -24,6 +24,62 @@ class App(object):
         self.TEACHERMODE = TEACHERMODE
         self.basic_strat = BasicStrategyTeacher()
 
+        # create a stack of completed hands
+        self.completed_hands = []
+
+    def play_out_hand(self, player, hand):
+        while hand.can_hit():
+            # get the house hand's numerical values
+            hhand = self.game.house.hand.get_cards(numerical=True)
+
+            # does the player have a blackjack?
+            playerbj = self.game.check_player_blackjack(hand)
+
+            if playerbj:
+                # pay out player 3 to 2
+                print("{}, you have a blackjack! Paid 3 to 2.".format(player))
+                self.completed_hands.append(hand)
+
+            print("\nWhat action would you like to take? (hit, stand, double, split)")
+            # display player hand
+            print("\n", hand)
+            # print("\nYou have {} with total value of {}, or {}".format(
+            #     hand, hand.get_value(), hand.get_soft_value()))
+
+            # display suggested action
+            if self.TEACHERMODE:
+                phand = hand.get_cards(numerical=True)
+                suggested_action = self.basic_strat.suggest_action(hhand, phand)
+
+                print("Basic strategy says to {}".format(suggested_action))
+
+            # determine if special actions are available for this hand?
+            splittable = hand.is_splittable()
+            can_double = hand.can_double()
+
+            # query action
+            action = get_game_info(self, can_double, splittable)
+
+            # apply action
+            if action == 'hit':
+                self.game.hit(hand)
+
+            elif action == 'stand':
+                self.game.stand(hand)
+
+            elif action == 'double' and can_double:
+                self.game.double(player, hand)
+
+            elif action == 'split' and splittable:
+                hand, newhand = self.game.split(player, hand)
+
+                # recursively play out this hand
+                self.play_out_hand(player, hand)
+                self.play_out_hand(player, newhand)
+            else:
+                print("\nEnter a valid action to take!\n")
+
+
     def start_game(self):
         """
         Function to start the game. Calls game's starting function (e.g. deal, start, etc.)
@@ -42,8 +98,8 @@ class App(object):
         # bjhand = Hand()
         # bjhand.add_card(Card(0, 1))
         # bjhand.add_card(Card(0, 10))
+        # self.game.house.hand = bjhand
 
-        self.game.house.hand = bjhand
         # get the house hand's numerical values
         hhand = self.game.house.hand.get_cards(numerical=True)
 
@@ -64,42 +120,8 @@ class App(object):
                 print("\nHello {}!".format(player))
 
                 for hand in player.get_hands():
-                    # does the player have a blackjack?
-                    playerbj = self.game.check_player_blackjack(hand)
-
-                    if playerbj:
-                        # pay out player 3 to 2
-                        print("You have a blackjack! Paid 3 to 2.")
-                        continue
-
-                    print("\nWhat action would you like to take? (hit, stand, double, split)")
-                    # display player hand
-                    print("\n", hand)
-                    # print("\nYou have {} with total value of {}, or {}".format(
-                    #     hand, hand.get_value(), hand.get_soft_value()))
-
-                    # display suggested action
-                    if self.TEACHERMODE:
-                        phand = hand.get_cards(numerical=True)
-                        suggested_action = self.basic_strat.suggest_action(hhand, phand)
-
-                        print("Basic strategy says to {}".format(suggested_action))
-
-                    # query action
-                    action = get_game_info()
-
-                    # apply action
-                    if action == 'hit':
-                        self.game.hit(hand)
-                    elif action == 'stand':
-                        self.game.stand(hand)
-                        break
-                    elif action == 'double':
-                        self.game.double(player, hand)
-                    elif action == 'split':
-                        self.game.split(player, hand)
-                    else:
-                        print("\nEnter a valid action to take!\n")
+                    print("On hand ", hand)
+                    self.play_out_hand(player, hand)
 
         # reveal the dealer card
         self.reveal_dealer_card()
@@ -108,6 +130,8 @@ class App(object):
             # now dealer gets dealt cards
             self.game.stand()
             self.show_dealer_outcome()
+
+        self.reveal_player_cards()
 
         # determine outcomes
         self.game.determine_outcomes()
@@ -150,20 +174,25 @@ class App(object):
     def check_outcome(self):
         self.game.determine_outcomes()
 
+    def reveal_player_cards(self):
+        for player in self.game.get_players():
+            for idx, hand in enumerate(player.get_hands()):
+                print("\nplayer: {} for hand {} had {}".format(player, idx+1, hand.get_cards()))
+
     def reveal_dealer_card(self):
         dealer_hand = self.game.house.hand.get_cards()
 
-        print("\nDealer has {}. Dealer is now being dealt cards...\n".format(dealer_hand))
+        print("\nhouse: Dealer has {}. Dealer is now being dealt cards...\n".format(dealer_hand))
 
     def show_dealer_outcome(self):
         dealer_hand = self.game.house.hand
 
-        print("\nDealer has {}.".format(dealer_hand.get_cards()))
+        print("\nhouse: Dealer has {}.".format(dealer_hand.get_cards()))
 
         if dealer_hand.get_total_value() > 21:
-            print("Dealer busted!")
+            print("house: Dealer busted!")
         else:
-            print("Dealer has {}".format(dealer_hand.get_total_value()))
+            print("house: Dealer has {}".format(dealer_hand.get_total_value()))
 
 
 if __name__ == '__main__':

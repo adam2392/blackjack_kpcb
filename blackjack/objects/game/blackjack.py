@@ -246,6 +246,8 @@ class PlayBlackjack(Game):
         # place bet
         # player.place_bet(player.get_bet())
 
+        curr_cards = hand.get_cards()
+
         # create a new hand from the current hand
         newhand = Hand()
         new_card_hand = hand.split_cards()
@@ -258,6 +260,8 @@ class PlayBlackjack(Game):
         self.hit(hand)
         self.hit(newhand)
 
+        return hand, newhand
+
     def double(self, player, hand):
         """
         Function to double your bet for only one more card.
@@ -269,10 +273,10 @@ class PlayBlackjack(Game):
         # player.place_bet(player.get_bet())
 
         # hit once
-        self.hit(player)
+        self.hit(hand)
 
         # stand
-        self.stand(player)
+        self.stand(hand)
 
     def check_player_blackjack(self, hand):
         """

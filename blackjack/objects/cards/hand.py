@@ -22,12 +22,27 @@ class Hand(object):
             self.get_value(), self.get_soft_value())
         return handstr
 
-    def split_cards(self):
+    def can_double(self):
         if len(self.cards) != 2:
-            raise RuntimeError("You can not split when you don't have two cards.")
-        new_hand_card = self.cards.pop()
+            return False
+        else:
+            return True
 
-        return new_hand_card
+    def is_splittable(self):
+        if len(self.cards) != 2:
+            return False
+
+        if self.cards[0] == self.cards[1]:
+            return False
+        else:
+            return True
+
+    def split_cards(self):
+        if self.is_splittable():
+            new_hand_card = self.cards.pop()
+            return new_hand_card
+        else:
+            raise RuntimeError("You should not be able to split a hand right now!")
 
     def restart(self):
         """
@@ -52,6 +67,9 @@ class Hand(object):
             raise TypeError("Need to add cards of type Card into the hand!")
 
         self.cards.append(card)
+
+        if self.get_total_value() > 21:
+            self.stood = True
 
     def get_total_value(self):
         """

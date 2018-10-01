@@ -17,6 +17,7 @@ Contents:
    install
    run
    tests
+   code
 
 
 Indices and tables

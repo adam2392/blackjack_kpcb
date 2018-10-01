@@ -1,4 +1,6 @@
 Running The Blackjack Module
 =====================================
 
-here
+Running it is as simple as running any python script. ::
+
+    python3 app.py
