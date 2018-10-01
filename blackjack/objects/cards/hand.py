@@ -7,6 +7,9 @@ class Hand(object):
     Class to represent a hand of playing cards. The state of a hand has two states:
     hittable, or stood. It is represented by the attribute: stood.
 
+    It has some added functionality by also allowing doubling, and splitting, which are some more
+    unique features of the blackjack game.
+
     """
 
     def __init__(self):
@@ -17,18 +20,28 @@ class Hand(object):
         return self.get_cards()
 
     def __str__(self):
-        handstr = "You have: {}".format([card for card in self.get_cards()])
+        handstr = "{}".format([card for card in self.get_cards()])
         handstr += "\nThe total value is {} with soft value of {}".format(
             self.get_value(), self.get_soft_value())
         return handstr
 
     def can_double(self):
+        """
+        Function to determine if a hand can double or not.
+
+        :return: (bool) True or False, depending on the state of the current hand.
+        """
         if len(self.cards) != 2:
             return False
         else:
             return True
 
     def is_splittable(self):
+        """
+        Function to determine if a hand can split or not.
+
+        :return: (bool) True or False, depending on the state of the current hand (same cards)
+        """
         if len(self.cards) != 2:
             return False
 
@@ -38,6 +51,12 @@ class Hand(object):
             return True
 
     def split_cards(self):
+        """
+        Function to perform the splitting of the cards. It will pop a card from the current cards list and
+        create a new hand from that card.
+
+        :return: (Hand) returns a new hand object that is formed from the popped card.
+        """
         if self.is_splittable():
             new_hand_card = self.cards.pop()
             return new_hand_card

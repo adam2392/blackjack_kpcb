@@ -13,12 +13,10 @@ Contents:
    :maxdepth: 2
    :caption: Contents:
 
-   background
    install
    run
    tests
    code
-
 
 Indices and tables
 ==================

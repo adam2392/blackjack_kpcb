@@ -33,7 +33,7 @@ class Player(BaseUser):
 
     @property
     def player_identifier(self):
-        return "player: {}".format(self.name)
+        return "{}".format(self.name)
 
     def deal_hand(self, hand):
         """

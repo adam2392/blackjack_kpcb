@@ -1,5 +1,12 @@
-# default configuration settings for the blackjack cards
+"""
+.. module:: users.house
+   :synopsis: A module to store user related functionality for the House.
 
+.. moduleauthor:: Adam Li <adam2392@gmail.com>
+
+"""
+
+# default configuration settings for the blackjack cards
 NUMCARDS_IN_DECK = 52
 BURN_CARD = 0
 SURRENDER = True

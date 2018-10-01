@@ -217,22 +217,15 @@ class PlayBlackjack(Game):
 
                     if player_val > 21:
                         player.lose(ihand)
-
-                        print("{} lost hand with {}!".format(player, hand.get_total_value()))
                     elif dealer_val > 21:
                         player.win(ihand)
-                        print("{} won hand with {}!".format(player, hand.get_total_value()))
-
                     # if loss
                     elif player_val > dealer_val:
                         # player wins
                         player.win(ihand)
-                        print("{} won hand with {}!".format(player, hand.get_total_value()))
-
                     else:
                         # player loses
                         player.lose(ihand)
-                        print("{} lost hand with {}!".format(player, hand.get_total_value()))
 
     def split(self, player, hand):
         """
@@ -246,7 +239,7 @@ class PlayBlackjack(Game):
         # place bet
         # player.place_bet(player.get_bet())
 
-        curr_cards = hand.get_cards()
+        # curr_cards = hand.get_cards()
 
         # create a new hand from the current hand
         newhand = Hand()

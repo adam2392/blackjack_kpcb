@@ -3,7 +3,7 @@ import pandas as pd
 import re
 
 import blackjack
-from blackjack.objects.enum.actions import Actions
+from blackjack.config.enum.actions import Actions
 from blackjack.config import params
 
 basedir = os.path.dirname(blackjack.__file__)

@@ -1,5 +1,6 @@
 import argparse
 
+
 def get_player_info():
     parser = argparse.ArgumentParser(usage="Please enter the player's name. "
                                            "(e.g. Adam Li) "
@@ -51,8 +52,8 @@ def get_cashout_info():
 def get_game_info(app, can_double, splittable):
     if splittable:
         cmd_choices = ['hit', 'double',
-                     'split', 'stand',
-                     'help']
+                       'split', 'stand',
+                       'help']
         usage_str = "hit, stand, (optional) double, (optional) split, or help."
     elif not splittable and can_double:
         cmd_choices = ['hit', 'double', 'stand',
@@ -65,7 +66,7 @@ def get_game_info(app, can_double, splittable):
 
     parser = argparse.ArgumentParser(prog='BLACKJACK',
                                      usage="\nPlease enter one of the following commands to proceed: \n"
-                                           +usage_str)
+                                           + usage_str)
     parser.add_argument('cmd', choices=cmd_choices)
     parser.print_usage()
 

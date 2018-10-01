@@ -9,10 +9,6 @@ from blackjack.teacher.base import BasicStrategyTeacher
 from blackjack.utility.utils import get_game_info, get_cashout_info, get_player_info
 
 
-# from blackjack.objects.cards.hand import Hand
-# from blackjack.objects.cards.deck import Card
-
-
 class App(object):
     def __init__(self, TEACHERMODE=False):
         # start with 0 players
@@ -26,6 +22,7 @@ class App(object):
 
         # create a stack of completed hands
         self.completed_hands = []
+        self.in_play_hands = []
 
     def play_out_hand(self, player, hand):
         while hand.can_hit():
@@ -35,16 +32,16 @@ class App(object):
             # does the player have a blackjack?
             playerbj = self.game.check_player_blackjack(hand)
 
+            print("On player: {}".format(player.player_identifier))
             if playerbj:
                 # pay out player 3 to 2
-                print("{}, you have a blackjack! Paid 3 to 2.".format(player))
+                print("you have a blackjack! Paid 3 to 2.")
                 self.completed_hands.append(hand)
+                break
 
             print("\nWhat action would you like to take? (hit, stand, double, split)")
             # display player hand
             print("\n", hand)
-            # print("\nYou have {} with total value of {}, or {}".format(
-            #     hand, hand.get_value(), hand.get_soft_value()))
 
             # display suggested action
             if self.TEACHERMODE:
@@ -64,6 +61,11 @@ class App(object):
             if action == 'hit':
                 self.game.hit(hand)
 
+                # if hit causes hand to bust
+                if hand.get_total_value() > 21:
+                    print("{} busted!".format(player.player_identifier))
+                    return
+
             elif action == 'stand':
                 self.game.stand(hand)
 
@@ -79,6 +81,7 @@ class App(object):
             else:
                 print("\nEnter a valid action to take!\n")
 
+        self.completed_hands.append(hand)
 
     def start_game(self):
         """
@@ -95,42 +98,36 @@ class App(object):
         # deals to the players
         self.game.deal()
 
-        # bjhand = Hand()
-        # bjhand.add_card(Card(0, 1))
-        # bjhand.add_card(Card(0, 10))
-        # self.game.house.hand = bjhand
-
-        # get the house hand's numerical values
-        hhand = self.game.house.hand.get_cards(numerical=True)
-
+        # check if the house has a blackjack?
         housebj = self.game.check_dealer_blackjack()
+        print("\nHouse has face up card: {}".format(self.game.house.face_up_card))
 
-        print("\nHouse has face up card: {}".format(self.game.house.hand.get_cards()[0]))
-
-        # start game state -> hit, stand, split, double, surrender -> house outcome
-        while self.game.is_in_play():
-            # if house does not have a blackjack... proceed
-            if housebj:
-                self.game.freeze_play()
-                print("Dealer has blackjack!")
-                break
-
+        # if house does not have a blackjack... proceed
+        if housebj:
+            self.game.freeze_play()
+            print("Dealer has blackjack!")
+        else:
             # loop through players, hands
             for player in self.game.get_players():
-                print("\nHello {}!".format(player))
-
                 for hand in player.get_hands():
-                    print("On hand ", hand)
-                    self.play_out_hand(player, hand)
+                    # add all hands into the stack
+                    self.in_play_hands.append((player, hand))
+
+            while len(self.in_play_hands) != 0:
+                player, hand = self.in_play_hands.pop()
+
+                self.play_out_hand(player, hand)
 
         # reveal the dealer card
         self.reveal_dealer_card()
 
-        if not housebj:
+        if not housebj and len(self.completed_hands) > 0:
             # now dealer gets dealt cards
+            print("Dealer is now being dealt cards...")
             self.game.stand()
             self.show_dealer_outcome()
 
+        # reveal player cards and print out outcome of the cards
         self.reveal_player_cards()
 
         # determine outcomes
@@ -147,6 +144,8 @@ class App(object):
 
         :return:
         """
+        for i in range(10):
+            print("v\n")
         # restarts the game
         self.game.restart()
 
@@ -175,14 +174,27 @@ class App(object):
         self.game.determine_outcomes()
 
     def reveal_player_cards(self):
+        hhand = self.game.house.hand
+
+        print("\n-------- Summary of game: ---------\n")
         for player in self.game.get_players():
             for idx, hand in enumerate(player.get_hands()):
-                print("\nplayer: {} for hand {} had {}".format(player, idx+1, hand.get_cards()))
+                print("\nplayer: {} for hand {} had {}".format(player.player_identifier, idx + 1, hand.get_cards()))
+                if hand.get_total_value() > 21:
+                    print("player: {} busted, so lost!".format(player.player_identifier))
+                elif hhand.get_total_value() > 21:
+                    print("player: {} won!".format(player.player_identifier))
+                elif hand.get_total_value() > hhand.get_total_value():
+                    print("player: {} won!".format(player.player_identifier))
+                elif hand.get_total_value() == hhand.get_total_value():
+                    print("player: {} pushed!".format(player.player_identifier))
+                else:
+                    print("player: {} lost!".format(player.player_identifier))
 
     def reveal_dealer_card(self):
         dealer_hand = self.game.house.hand.get_cards()
 
-        print("\nhouse: Dealer has {}. Dealer is now being dealt cards...\n".format(dealer_hand))
+        print("\nhouse: Dealer has {}.\n".format(dealer_hand))
 
     def show_dealer_outcome(self):
         dealer_hand = self.game.house.hand
