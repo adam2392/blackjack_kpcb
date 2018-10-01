@@ -288,8 +288,6 @@ class PlayBlackjack(Game):
 
         :return: True/False (bool)
         """
-        print(self.house.hand.get_soft_value())
-        print(params.BLACKJACK)
         if self.house.hand.get_soft_value() == params.BLACKJACK:
             return True
         else:

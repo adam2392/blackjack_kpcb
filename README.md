@@ -2,7 +2,7 @@
 A blackjack implementation using Python for the KPCB Engineering Fellow Challenge.
 
 # Setup
-Run on a Linux/MacOSx computer that has python3 and pip installed.
+Run on a Linux/MacOSx computer that has python3 and pip installed and if you unzip the tar file.
 
     # create a virtual environment
     python3 -m venv. venv
@@ -13,6 +13,20 @@ Run on a Linux/MacOSx computer that has python3 and pip installed.
     # install requirements usuing pip
     pip install -r requirements.txt
         
+
+Other setup:
+
+    git clone https://github.com/adam2392/blackjack_kpcb
+
+    # create a virtual environment
+    python3 -m venv. venv
+    
+    # activate venv
+    source .venv/bin/activate
+    
+    # install requirements usuing pip
+    pip install -r requirements.txt
+
 # Running
 
     python3 app.py
