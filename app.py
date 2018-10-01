@@ -6,7 +6,7 @@ from blackjack.objects.users.player import Player
 
 from blackjack.teacher.base import BasicStrategyTeacher
 
-from blackjack.utility.utils import get_game_info, get_cashout_info, get_player_info
+from blackjack.utility.utils import get_game_info, get_cashout_info, get_player_info, get_teacher_mode
 
 
 class App(object):
@@ -21,13 +21,17 @@ class App(object):
         self.basic_strat = BasicStrategyTeacher()
 
         # create a stack of completed hands
-        self.completed_hands = []
         self.in_play_hands = []
 
+    def enable_teacher_mode(self, teacher_mode_on):
+        self.TEACHERMODE = teacher_mode_on
+
     def play_out_hand(self, player, hand):
+        can_give_suggestion = True
+
         while hand.can_hit():
             # get the house hand's numerical values
-            hhand = self.game.house.hand.get_cards(numerical=True)
+            hcards = self.game.house.hand.get_cards(numerical=True)
 
             # does the player have a blackjack?
             playerbj = self.game.check_player_blackjack(hand)
@@ -36,7 +40,7 @@ class App(object):
             if playerbj:
                 # pay out player 3 to 2
                 print("you have a blackjack! Paid 3 to 2.")
-                self.completed_hands.append(hand)
+                # self.completed_hands.append(hand)
                 break
 
             print("\nWhat action would you like to take? (hit, stand, double, split)")
@@ -44,11 +48,12 @@ class App(object):
             print("\n", hand)
 
             # display suggested action
-            if self.TEACHERMODE:
-                phand = hand.get_cards(numerical=True)
-                suggested_action = self.basic_strat.suggest_action(hhand, phand)
+            if self.TEACHERMODE and can_give_suggestion:
+                pcards = hand.get_cards(numerical=True)
+                suggested_action = self.basic_strat.suggest_action(hcards, pcards)
 
-                print("Basic strategy says to {}".format(suggested_action))
+                print("\n*********** Basic strategy says to '{}' ***********".format(suggested_action))
+                can_give_suggestion = False
 
             # determine if special actions are available for this hand?
             splittable = hand.is_splittable()
@@ -80,8 +85,8 @@ class App(object):
                 self.play_out_hand(player, newhand)
             else:
                 print("\nEnter a valid action to take!\n")
-
-        self.completed_hands.append(hand)
+        #
+        # self.completed_hands.append(hand)
 
     def start_game(self):
         """
@@ -244,11 +249,16 @@ if __name__ == '__main__':
 
         # determine what engine of the cards it should be
         if args.cmd in ['start']:
-            # start cards
+            # ask if the user wants to enable teacher mode
+            enable_teacher = get_teacher_mode()
+            app.enable_teacher_mode(enable_teacher)
+
+            # start game
             start_status = app.start_game()
 
             print("\n\nNew game starting!")
             parser.print_usage()
+
         elif args.cmd in ['add_player']:
             player_name = get_player_info()
             app.add_player(player_name)

@@ -87,3 +87,28 @@ def get_game_info(app, can_double, splittable):
             break
 
     return action
+
+
+def get_teacher_mode():
+    cmd_choices = ['yes', 'no']
+
+    parser = argparse.ArgumentParser(prog='BLACKJACK',
+                                     usage="\nDo you want to enable teacher mode (basic strategy)?:")
+    parser.add_argument('cmd', choices=cmd_choices)
+    parser.print_usage()
+
+    while True:
+        astr = input('$: ')
+
+        try:
+            args = parser.parse_args(astr.split())
+        except SystemExit:
+            # trap argparse error message
+            print('error please enter a valid command')
+            continue
+        if args.cmd == 'yes':
+            return True
+        elif args.cmd == 'no':
+            return False
+        else:
+            print("Please enter either: yes, or no")

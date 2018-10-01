@@ -29,12 +29,12 @@ class BasicStrategyTeacher(BaseTeacher):
     def __init__(self):
         self.teacher = BasicStrategy()
 
-    def suggest_action(self, hhand, phand):
+    def suggest_action(self, hcards, pcards):
         # get the house face up card
-        house_face_up = hhand.get_cards(numerical=True)[0:1]
+        house_face_up = hcards[0:1]
 
         # get the player card
-        player_starting = phand.get_cards(numerical=True)[0:2]
+        player_starting = pcards[0:2]
 
         # apply hash map of player cards vs house faceup
         hash_cards = player_starting

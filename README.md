@@ -39,6 +39,9 @@ In the future, it is quite possible to extend the API to account for surrender (
 The API is documented automatically using Sphinx-doc. I will attach a documentation page made from that using the docstrings
 in the code comments. Here, I will also overview at a high level my implementation strategy for the blackjack game.
 
+Go to: https://github.com/adam2392/blackjack_kpcb/blob/master/blackjack.pdf
+for a sphinx-doc api documentation.
+
 ## External Libraries/APIs:
 1. pytest: for unit testing
 2. pandas for easily reading in a basic strategy excel table
@@ -97,3 +100,11 @@ I have a lot of experience with pytest, and therefore found it to be the best op
 My testing approach was to make sure that the main exceptions were raised in some of the basic object's functionality, the return states were correct
 and also that certain game play produced certain results. Once this was performed, then I was satisfied that the blackjack app.py could be easily written
 to just connect all the different functionalities of the blackjack api.
+
+## Future Thoughts
+A big part of learning blackjack is realizing that you just have to believe in probability and statistics. A part of the app I would be interested in extending
+is overloading the OpenAI gym environment and creating an environment from my blackjack game, so that I can install a Reinforcement Learning agent that
+"learns" the optimal blackjack play over time. It will be very easy to see that the agent will need to learn over a tremendous amount of play because of how
+variable blackjack is. However, here we can demonstrate that a human just needs to memorize a simple hash table of what to do based on the dealer's face up card.
+
+This makes learning optimal blackjack very easy.

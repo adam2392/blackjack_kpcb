@@ -9,7 +9,6 @@ from blackjack.config import params
 basedir = os.path.dirname(blackjack.__file__)
 basedir = os.path.dirname(os.path.abspath(__file__))
 basedir = os.path.join(basedir, '..')
-# basedir = os.path.expanduser("~/Documents/blackjack_kpcb")
 BASICSTRATEGY_FILEPATH = os.path.join(basedir, "config/basic_strategy.xlsx")
 
 
